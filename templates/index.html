@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>{{ event.name }}</title>
+<style>body{font-family:Arial;margin:40px;max-width:1000px} .card{border:1px solid #ddd;padding:16px;margin:12px 0;border-radius:8px}</style>
+</head><body>
+<h1>{{ event.name }}</h1><p>Status: {{ event.status }}</p>
+<h2>Public Gallery</h2>
+{% for s in submissions %}
+<div class="card"><h3>{{ s.title }}</h3><p><b>{{ s.team_name }}</b></p><p>{{ s.description }}</p>
+{% if s.repo_url %}<a href="{{ s.repo_url }}">Repository</a>{% endif %}
+{% if s.demo_url %} · <a href="{{ s.demo_url }}">Demo</a>{% endif %}</div>
+{% else %}<p>No submissions yet.</p>{% endfor %}
+</body></html>

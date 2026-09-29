@@ -1,0 +1,59 @@
+HackForge Dogfood 2026 — Acceptance Report
+
+Date: 2026-09-29
+Build: reference submission package
+
+1. Repository structure
+PASS — README.md, ARCHITECTURE.md, DATA-MODEL.md, JUDGING.md, LICENSE,
+       acceptance-report.txt, tests, Docker Compose and application source included.
+
+2. OSI-approved license
+PASS — MIT License included as LICENSE.
+
+3. Docker Compose
+PASS — docker compose up --build starts the portal on port 8000.
+PASS — SQLite data is persisted in a named Docker volume.
+PASS — seed data is created automatically.
+
+4. Seeded portal
+PASS — event, users, team, submission, rubric and judge assignment are seeded.
+
+5. Registration
+PASS — POST /api/register creates a participant account.
+
+6. Team creation
+PASS — authenticated participants can create teams.
+
+7. Submission
+PASS — team members can submit projects.
+
+8. Judge assignment
+PASS — organizer/admin can create assignment records.
+PASS — duplicate assignment pairs are rejected.
+
+9. Judge isolation
+PASS — judge score reads are assignment-scoped.
+PASS — a judge requesting another judge's submission scores receives HTTP 403.
+
+10. Scoring
+PASS — judges can submit criterion scores from 0 to 100.
+PASS — weighted rubric totals are computed during normalization.
+
+11. Normalization
+PASS — min-max normalization produces a 0–100 event-relative score.
+PASS — equal-score edge cases are handled.
+
+12. Results and gallery
+PASS — results endpoint returns normalized ranking.
+PASS — public gallery exposes submitted projects.
+
+13. CSV export
+PASS — organizer/admin can export submissions as CSV.
+PASS — participants cannot access the export endpoint.
+
+14. Tests
+PASS — pytest test suite included for seeded portal, RBAC, judge isolation,
+       registration, results, gallery and export access.
+
+15. Demo
+PASS — DEMO_SCRIPT.md provides a five-minute complete event lifecycle.

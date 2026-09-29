@@ -1,0 +1,14 @@
+services:
+  portal:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: /data/hackforge.db
+      FLASK_SECRET_KEY: dogfood-2026-demo-secret
+    volumes:
+      - hackforge_data:/data
+    command: python run.py .dogfood.toml
+
+volumes:
+  hackforge_data:
